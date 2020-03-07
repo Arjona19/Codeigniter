@@ -1,0 +1,19 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertCotizacionWeb`(IN `Nombre` VARCHAR(300), IN `Telefono` INT(10), IN `Correo` VARCHAR(300), IN `idEstado` INT(11), IN `NombreEmpresa` VARCHAR(300), IN `Descripcion` LONGTEXT, IN `Fecha` DATE, IN `MedioC` VARCHAR(300), IN `Servicios` VARCHAR(300))
+BEGIN
+if EXISTS (SELECT cotizar.ID FROM cotizar WHERE cotizar.Nombre=Nombre AND cotizar.Descripcion=Descripcion) THEN
+SELECT false as 'respuesta' LIMIT 1;
+ELSE
+INSERT INTO cotizar (cotizar.Nombre,cotizar.Telefono,cotizar.Correo,cotizar.IDEstado,cotizar.NombreEmpresa,cotizar.Descripcion,cotizar.Fecha,cotizar.MedioComunicacion,cotizar.ServiciosRequeridos) VALUES
+(TRIM(Nombre),TRIM(Telefono),TRIM(Correo),TRIM(idEstado),TRIM(NombreEmpresa),TRIM(Descripcion),TRIM(Fecha),TRIM(MedioC),TRIM(Servicios));
+SELECT LAST_INSERT_ID() as 'respuesta' LIMIT 1;
+END IF;
+END$$
+DELIMITER ;
+----------------------------
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectEstadoWeb`()
+BEGIN
+SELECT*FROM estado ORDER BY estado.nombre ASC;
+END$$
+DELIMITER ;

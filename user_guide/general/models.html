@@ -1,0 +1,642 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Models &mdash; CodeIgniter 3.1.6 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.6 documentation" href="../index.html"/>
+        <link rel="up" title="General Topics" href="index.html"/>
+        <link rel="next" title="Helper Functions" href="helpers.html"/>
+        <link rel="prev" title="Views" href="views.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Downloading CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Upgrading From a Previous Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter at a Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Supported Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Application Flow Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Architectural Goals</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Static pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">News section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Create news items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developerâ€™s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Using CodeIgniter Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">Creating Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Using CodeIgniter Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">Creating Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">Creating Ancillary Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">Hooks - Extending the Framework Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">Auto-loading Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">Compatibility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">Profiling Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Running via the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP Style Guide</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">Benchmarking Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">Calendaring Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">Shopping Cart Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">Encrypt Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">File Uploading Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">Migrations Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">Template Parser Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">TypograYƒ±nyvJöoòÄ½4•£áÙI%v@zbU$§“û£•\mW‚GÜ­)ı0Ê‘àùÎÉ€ù‡éjld°ÔP›~¼¥ªô
+«%œÏ6g\9ê†å^ÁTßê"«‡Æ±Ğ>Ê0õ¾®³W³œ’>v¶^kƒdôgæŒıºğ–<°ã®MpF@61!¶~0ƒæo"ÇˆäûK:¹Ñ1Êé/¡Ä¹vàE™.¡ë¶¼‚-¦\„Ç˜ŞˆÑà¯ÉÙå?1f4@Ñ·òñJîáGÕD÷Ğ»©”( A5€0Ö›ĞÎ™[ï¸€È +àƒ¾xÒ…rû½bş¶±IS·ŠıÀGNÏ¢m*õÑ©°ˆs·íO¿ˆj¦9.biÔ¯3=ìåÄG!ø0¼Òı.¬µvµâ­çœ|$L¶õ1`‹y'õÓˆíÈÛyÜÁêèÎm}?×¾mûºkG0: fUfä@hôş™.]'š}=‘ cF¸X´ªFüW€ÔeÇ#Æ¾`¤mŸ-}óÓS}ã©ô9Æğ¼GX†²ÁlSufá0¡^ö&‰@=Z{„OÀâ4‘3VØ©yïçZ{(YïPä™=ğÊ–Æ,µÀ•´æ|}5ŠÍ¹İÀ8i÷è¬*ı™úbv%ïï`’´ê'ùXõj¨0šÁÄ¿ûîÖrù:%L&×‹°é™Î}»ŠDÇ1Ê ¤>ÅS•K89c„Ÿ°ğŞó ±7²Õî¤_íÒ˜¶E¡èø+úÑ*’0–ÀšĞ•9 Ö'ü†ıÚò¯½J­©[¦€N¯™Ckı×Ãë}2˜ù$àóX{¢É›vøY×Ú–K`ì  ~X?Yû¯cb|Qs4RËø€i?wS›×s×1§t°5K )ÌZˆâ“F¬‹-}ÃJ= ñøôCç¦­H¡~àF¸Ÿ“F˜áçŠ>áe
+ A«Cà!ì’bRUÂX©µ7Åyî® ‚Ç&wHÿ €æí`”àdÄAfoKúU‹b†<§Y¶c"ôKˆ(NçÕ$k“ãÃÚ)‡C+ªYŒVFÃjóŸ†Èg Èx“)ÁAâ|(jœİruîfOè’Oî¸h<©#­íã@¹}>
++ÕuÏh™n 6µ×):b™qÔ+1–Qù÷é•)r1 „‚
+as–<”’·]a÷SÑ&í"³1 q†¢€3°T7æJÜq÷QäâõX\â{Æ@ii#J¶rŠÍ²#·³ÜéWêš‘‡[‹™Ù³eñQr˜*:V¤@Â<ÔJ‘yÏ¸DÁÌö^ãS(‰g< ^L4æHà…’…kl‡DO!WI­Ÿ´ n0\@…|ZPí-aìùUaÜØµÔş	~VÂ+^¥·Ÿq¤Q·éË(AN]–hW”TÑ¥[r^­Ã’/¯-†êœ°›…îÊ6wÎK/LêJ7‚IË¸¡­!zlÃ>ÎBÜ\”=‹ı¿rCÒ«(»Ê_à‰¦_©Å&ÌMÜi×pQX±Hºkn$,êA(Áš…†âïcØ¸ãvO”î‚v¬Ãmtâúò`¯Î½±ïèÈ{K…¬(!u¸)"<œÌ¨Ú>ĞÚ¥¢²Ñ‚ÙdñRFJë»ğ¸¤ñª¹¢›å´À“wbŒ%.ŸOnAXÑ†ôƒ{Ã¸öÿç	9¢tCğß'Qæ1Zua¬—]=éíÜÄ>Noâß`kbı˜Í_øí38^«bvƒ.4î6ÕÍíı4>õ+UÙRé‚HŒ8ÂÈU6›  ìHòĞ±‡ıtÀF:ªĞW* e‚ \M¶¯¥ß<«ğ=àã¾_4Äİ·¦Á®h¿dbˆ¢*ÙW?yÅÔE•´ÕŒ}Ğµ›²=¡.GˆÆ”D]o—î¾õ©ûã°C–9'ûL(` gqY¸M?‚ØÃğ¼våŠ5Î0§y›v’ÇTkr&‹¹&˜²uLØ¥I!ñÚ¶õœfÍ?²ÉêÛ'Â /›´aÜ)+/–U^ğº4'_"HÃ#Ê2*rù’a°w=ÔÅÅ.ÔQo‹õ„‰FOFÀÛwÿ„½@ã¦­º)&OÖoéR­[kqºdQÅ%Ôn½®çÖ:ı¥—Î^ó¹‘À~éJtÌx•tÓ¾ßÃ°€†i˜\é÷¡†‰ÿfŒB>“¦&>EyË ÄÑ&ïÆŒQvÂKoäÊ©Äuÿ€l£t*¸2dm¨IY,í¸:Ò™ñ×nóş«ıÄ‡@“Ó´Œ1j}'Pç?¦ƒœ4Ìf?/şÎ%OEj$1±C†uøğ¿s½â¦OïŸOnbKpªéaËÀåÏ§•îŒLÁmêk©M¾1ù¥lk#9)µ~YÁuÀ‘–i`<"üÒéDUÊ^Êì}×ÛyŠÁ¾`¶~Æ»!ud–tUæÕĞ) Ù³Â7K²Ö-]{2³İ9K¡[Om;E-TÏç›»g ¹íĞ•I!ÒCÊ¨z4(Ço·¦Ñºîë±AËR÷qòÍ#¦%²ÈĞûÕ¶XXŠ
+]ï¶Í«jãÈ°¼™xÔgçÍ]wøH1ºé¦c0½‡}}i‹äĞ|ŠÍ£ŸN”ÀkòL3¬TÉûĞŠ±>%0e”§3\F\-Š–I¢E£Çç“ˆ4MØåp^p:Zãöù<ŠÇ)¾Ÿ#ôN¬©Ìv¶Òë-)ó+#[ğµ´#c‚{wÂş£¡Öåá®”ş~I3¢®úîs-´%‹Hğ³‡–ø °9ÎÙ¥QQƒSÉ‹âäuJî>épÏeq·(¾mâ5ƒœmã\Iœ±Rßö»/pUôsQ„ÌáÈLÂ# O:‘Euâ¾²œ#Á~W›kŒ¡ÁŠ‘ÛÌ.Ãí–KAJªñu¢uĞß}IÍ.sÍºÔ•åÚ¤!VlCVŸşr6ğRõDGÿŞP‰;P"*`xH‚¹`Ìuû+mË¯#îº‰ÂÓ×¬c;<hÿB8§MèËÜCL,-ıK2´Âk´xwSIHfåÁ°§é]?d7Ó^GŞÛÆ±¦ß2tÜ•%ı“ÍÜéT62Æ ½ö[ğ-Âièjz™ü/òIØzU4’«o5¡8UÛÿ¹ÙjfÑ°Á¶œ9w,7òÖÒ#v¦OÍnŒßlCcù•„¿ş’ï–»"HgHå{Ú_«G4r®3O™£¡ÛŠM¤ xo@µ²¬"‚şZñïfÙüøy=[JYŠ±ï¬hZ>{ãM…-÷ò=I0£ğã–Nj£«÷›¦‰åÃ§F%ìğ´2>æ"«,’ä×Ì?aŞ`ÆsGcMĞù-kCÚ!x‹så™¯Õ·cÊ{OÚzMöîU_¦stB³¿ıJêHdàõğ@O.HºşÌı@ªÌ«ÇK¹?$m‹eAqA0´ƒ9sÙ
+9S Îh%aIšå]L•yİÇ¹x®ï¥®ËüD–­Écaqãs7Hq”á|æá%<Ñƒª£·ãTÛÍ
+èËçòëÖ“ü™æë4E,ğV—n”ø£Qä^f“n´/ÆQàÂ8HñCÅ¬~K´¨BŒåÉí2—Ú}ü4}½ËÔ’º…±eÒâŠ¢™ê]™# “ïš•j¡}bëìz8¾RÕ¹ÉÍÿ0'øRŸ
+Ó„rål^›‹¢œZgÒÈ¿‚/¸D'åaƒŞ’Ì}k’'û (×ö²U"'e`x0„\a
+ÿÀÕ2‹T×Ÿ-éªh«/W™/…ÉB‚Y4WÉúÔŠœÜì—w8ê‘îÅóŸ>6øèqü¾è’Çû¢Ö·wSìÈMfxA©§äİü¥pDêLr«İ%zAò'Œ‰”à’ë?5CÔ@IÆ´sœZ
+±V¢Î,“•™sü~èFRµä#nVzå>ºÊf' oõù- ˜ÌçÊ*´èvû€ÊÃŸáúäÓ™næænÍ¡v¢ˆ²ä)İC€ø	¿}›ûfwtàÁ\Á·è Š½€AÄ˜£3¾(O8@7Øš×1‚ò)6°X»søGIé Ô ”LcPóMåòY+¥í=Å­MÆ0J«Wñ“¬Ÿœ˜ñÊ2Í˜h k8(ó©ü	Bx£·"ÑGI“Û»ÿÕâçcu’nZ0ò¬'7øÎ¥QZaÛÇ…î°F­T»şHàA“m·[æKQGÍì…p´“Ï^«X¯¨‰fÂFÓ#êÚÜ`%³‚)G•ŠùÃïD|ç“u†ŒˆsaÎ·¸›ğl‰'ÓÔ1:JjQÆñ¶ˆKó™µ&âWÇõ1S³ ^Eİ°í¡­LçÍçf¼&#«'tTuúbçTâ>„yÉşÀ•“\˜ÔæWÇ¡±Ü5€1úÅÃ³#ÖWJæÃ·à´@‰µ¢â–˜$7Z…N«HeggáˆÉÙUDE¬th»ü@şn:`mC>j³'îaü‹g·ñlœ7Ï»°{ÿd0‡I{]ÔòÊ˜V^ÛPğô…[Y6´)Ï´ş¢…Lí“7N±)è€†Ps‘ÏilN ‚(âw‰jÂ«|‹¿«P¯ÃÂ€MêW©êDğjªZ›â¿u½XŒÛƒ›–(Éâ]²AÁª¤2…Ò¢¿* ntRQq93s<ºª„ÙÕÑèfuØ’J1Ô<Bü‰Ãş¼·"p°ŞÆ:]9şÙÿäTç (ü†‹İ§ÈJÓ¼ù¨ôóçE[9IK~êŠa¦YhÏT=aãtc>óêæ‰Õ—Ìàv%åáŒ¹Şæ½fµ…u•ŠZƒáÓõ‰øÑÎÂ«É;ğ€¥[İpAEÜY`$ÿ
+fïËŒÊI‡CB—Â£â£I[uôó™Æ¼‹—§Pa‘Â,>{€=I;…D¡UÃŒO67>–Êú$Cxoï¨ó¹™]çê#(ú«lğyâ¦·š%N©2‹¶7ãtá”1›8)`|÷Q«YòÎ#ÚõØ?‹¼èbçó\&[ƒ‘%üú³p({\×¶€3šRÜ#M±;"Jæ°2p•¤F®$¶@£qæ€.¾³X&/ôƒAi„ôÊ§b=`”™Öœ]Ç`_0=Š[‘t€™¨¸£UĞßfIg,Ç‘Şu]!P¢ ?ÕTÛå•¼õ]gùä*NÌrMBI;Õjø±—Ş;‰¢X¬»×¹Pk–êk¤•¡¡?„Ûv¡¬í™%ú™ÍŠvªï\D»Ö’G*o÷á×*í`"ß`ŠÒß©¨-E7ã„‘ßZêc./QEÈŸGiısNQ˜8¨Ş+Nrƒ6	bù(’Æ_FjïŞ+¼„²|eÎZ(!4İ-€·ò.¦)œó§¤°L
+cÑöMÓ©Èy?yƒHé©jÓ&-Îë§¶²£lsıUŞ%$ÚBph5ãXûY¡Hë;\ÛÏçG D=DÊ0„,5\oe1äIé?Ğ1²ëî’~ó¼[A|5‚ñ~ë…<c77Í@zGšoıÅH}LŒs´a»ô¿ M¾a+¢ñÛä6nW¿çWt’ÕD³Ç9}øÃ@§/%,ÏéîæÂĞÜ4gıëãÍ	|¥©fÈ
+‡“ŸòoZ¾%Cóã5ıptÇ°ÔÅyß…zÿ"ÇÈœs%hoÙ´²jí–º™BÔGW¿PFqçmmıiÃ~İŠÙ+}zi‘WÌ—oÊ&“2‘g‘®Ô4ÿõ™wø§ºiiÉy·kTŸ!Ç$—5F;4»¿¹^ºdø÷—ŞuMÈÊ‘P|şÕÒŠª¢Ö+Ï $V›Ki#^ÍÙUA6¶›õğdóv9¾ñoœ€ -Y]’9guÓ‹åûı`‹Uínê3’êòù U*ÙŠ©6æñÄOà8Á)Ø¬*p‡ªhTu™¤·pqœ(9ıú¿ÕOYƒÔ›1åˆ‘Ù3Ï0ÄµŠ5_€—ƒf÷½8x>X$Üå( ^ŞwZİUµ:dMMëTu@fİ^1"s…eŠEı‹™;€Ê™C[ÈÌøÆZª€=]’Ã‘½ƒÆ7d&x=%¢öZªBhs§Ç§³¬Ù&Ú&œmr;n(ÓÙk”Ló§qÑÃ,:bDÂG²zkæD‘7ì4G³uÛRì½> ²[ûåì^O÷—¯•d/VØ6ˆã¹JÒj”Œ¹ğY—µñ²49ùæ9ˆ¯"Eˆ­$Ò÷ûep¨$“À…Ï˜«‘Ç ä,à®,0`Pş;LÀ›x<”‚è1ê4BŒ	ÚÒW“ª­cQ#ÉcMÔ–!eëÊÃõ£}¡0„@i«§Á¾!ZûP(Õ¾Ö?Í›?»(›bğBYn¦{$¶FàÏWÉv¡sÕº=¤l_7eşõ/ôkX}·¯šbìûßh^7»cH*4$õÏÙ¸É&°n÷=Ìr§¶hRÏËóİŠ…ÔNöE˜ú¢ú§l¾Œû*º$l¸—U*Áº±Qª¶>é6@ş9ÕŠ“º½ì‚ŠJ[Àgıÿ”Gâ‡].%VRü§ÙN·5íß›Æu`8şJ›Í¼Ğ¤¶[Ä9FhÄÒf¶üŞ9N·gC†…&ÄJë•ØÁÔ®‚ƒdü˜*Ä$’‚mW…»B™GÉÈJÄDViL¨¥$	ìÒ¶×ÓjâO¿kÃBãBÈ¶éÖK7sÁ"¡…Ó.‡ŒŠ£)Í{”°Ëf†X*Ø†^‹ŠBpC9€ßˆ½½eúp6›ÎWŠ‰ÈÀL[öIÑ]yˆ"z]SÄ´àX‡w/<»ïÛËÀìÚ_8.Ï[UÙz£å;yYl.×?ÉtÍ¹52‰Lº’Û-‹]€!tm1'Õmş>ª^-ûÀ4€A©µBÎ«©Ìj,gÁaX^ÏÂ½¼æã’¦ÖòÔîmfù‡ü¾=íuØ-ûçĞ‰Ã}f“¥b…“’MÄ#¢…-(<t]a¾±¥á]ğô]—386dÿİUæ>ŒZñ§L â0Íë¢ÂgT “¢,*Læcmq«§V—)³i—º0Ä+º™¸¹¦v˜rgBå¤X|`í°£­é«nö„,v=è7r±Cñ>MoEícø¾_0—\¯-]¡nhëæQàĞw*8sá•øWõ‡KU]X½Êd(}È¤ú
+ñº$¼m;qË³ğúyØtÈÎT6£³Åşfc:£WSw—pé¹º€5eØáó\ßòˆD‡hóS§: èÔUæ@·yë<Ç)H˜5\Ç!€ş—('öÍ¶Ñ)êS=¤DA{»p‰¿”}æª6—â’_˜´À:I!ørƒ›ÿÂ0v6µ–Xò%Ÿü0I¾ŠîµL“"ƒÑÌ’3·ìÒãŸ`ar¤¢F: ÅÖ¾íğúVñÂK;t Ü‚jÂª9pe÷§³ÒO †¸•„Ô)+=‚¬C	×v†	 Õi\jU‹¬ôµüÂœÌòÂvæÉ_%ße¥‚áB³œMšâà!¥ŒöüP|¾YÌb¥©ºÉó×cĞÔaÃh/f(B+:*o§‘H:LIÁîš¢lgnwÆD/Ù4gg{‡òV ñ7a¬ÒW4?ÿP/¬š„±ãğ¯~_”d ²
+ÕW<¬±Ô†L=oÚjöj˜-€c
+]¨8ŒZ, ‰ª/±eOËÕ7á íÌÛÛŒî²Â¹ÁŒ‚“	Oà=f.ÄgÕHzÓæ/ofJl{KÙ’b‡ñœûÇÄX“BÅœ®ê…kwÿÕtJ9’´ *Ò8jHE\+|h&8Ï‚L€â–YÚóàŠIÕ‹•wj=á“G¼—â`ğr»ÛED‚,äÃ‹Àq4‘\Kn¤jÙGšæ´P¥y@-¦ığFe®ÛíÆuoJ¨\à!…[ĞsZ!ö"
+iÄ£ÄŒsšA“;‰ôKè¾`-ûËáLM!¿·_%²ØŠ¢ëİ aÏ°şßR0½ôLØŒİ»OãN'7¸çzR÷$¿ ªrœ×D¡‹ÛŒğØËZ\<g1†‹$-ÛPzBçw½ ‰¼0›yÇD}àÒçÔ¯ººOE8„Ó³ó*oÁÊ¹¾Ê7Ÿ]OÖFİ¥ŸÄÓƒ³ŞÃ5šx®(Iƒï]'Yµ¶êø×á‡Šj¿D»µ+)Ûi•ErÈ_!ò¦y ˆúŞ®–F©8{]„¾Ş)½ô{ØìÓ5V<¬‹Ï0ĞöÀ¨h¢·‚#Ø­Ë™©”r‹éá²ºAÖÂKm7¶ço³ñÜs—¿å	{Ôîœ•ùV.°šø¤Öùi>¿ºø¶Šó¼»;7“œ'õ×pî°¢3÷¢«~µ!‚4ˆŒNl“Iäæ*NªtéfóHxêâ°¥uu/ğ3KÄœ´!¹Ë±ıª¶Z\^Y%:"davÕóXéÃ¤2ƒåqÌ™aÔÅËº±,v4µ{\8XâˆûŸAÒŸCÇZpÔUÄ•¨÷â¯ŒÏÃãuô6Hà÷ŞxÕÿ#Ñ‚ähi¤E1ñÜäÖÀlHWšdW"GôAáPv€è\‰±ÕiZ­àúÓ½›KY¶'2Û
+†*‰
+O³«Å–İu¯×æ¢Dy/¼ÏpóÑ™îº·ÜAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Downloading CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Upgrading From a Previous Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">CodeIgniter at a Glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Supported Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Application Flow Chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Architectural Goals</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Static pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">News section</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Create news items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Developerâ€™s Certificate of Origin 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">Reserved Names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Using CodeIgniter Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">Creating Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Using CodeIgniter Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">Creating Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">Creating Ancillary Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">Hooks - Extending the Framework Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">Auto-loading Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compatibility_functions.html">Compatibility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">Profiling Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Running via the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP Style Guide</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/benchmark.html">Benchmarking Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calendar.html">Calendaring Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/cart.html">Shopping Cart Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/config.html">Config Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encrypt.html">Encrypt Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/encryption.html">Encryption Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/file_uploading.html">File Uploading Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/form_validation.html">Form Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/ftp.html">FTP Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/image_lib.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/input.html">Input Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/javascript.html">Javascript Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/language.html">Language Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/loader.html">Loader Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/migration.html">Migrations Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/output.html">Output Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pagination.html">Pagination Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/parser.html">Template Parser Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/sessions.html">Session Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/trackback.html">Trackback Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/typography.html">Typography Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/unit_testing.html">Unit Testing Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/uri.html">URI Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/xmlrpc.html">XML-RPC and XML-RPC Server Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/zip.html">Zip Encoding Class</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Database Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Quick Start: Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Database Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Connecting to a Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Running Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Generating Query Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Query Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Query Builder Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Getting MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Custom Function Calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Database Manipulation with Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Database Utilities Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Database Driver Reference</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">General Topics</a> &raquo;</li>
+      
+    <li>Models</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="models">
+<h1><a class="toc-backref" href="#id1">Models</a><a class="headerlink" href="#models" title="Permalink to this headline">Â¶</a></h1>
+<p>Models are <strong>optionally</strong> available for those who want to use a more
+traditional MVC approach.</p>
+<div class="contents topic" id="page-contents">
+<p class="topic-title first">Page Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#models" id="id1">Models</a><ul>
+<li><a class="reference internal" href="#what-is-a-model" id="id2">What is a Model?</a></li>
+<li><a class="reference internal" href="#anatomy-of-a-model" id="id3">Anatomy of a Model</a></li>
+<li><a class="reference internal" href="#loading-a-model" id="id4">Loading a Model</a></li>
+<li><a class="reference internal" href="#auto-loading-models" id="id5">Auto-loading Models</a></li>
+<li><a class="reference internal" href="#connecting-to-your-database" id="id6">Connecting to your Database</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-a-model">
+<h2><a class="toc-backref" href="#id2">What is a Model?</a><a class="headerlink" href="#what-is-a-model" title="Permalink to this headline">Â¶</a></h2>
+<p>Models are PHP classes that are designed to work with information in
+your database. For example, letâ€™s say you use CodeIgniter to manage a
+blog. You might have a model class that contains functions to insert,
+update, and retrieve your blog data. Here is an example of what such a
+model class might look like:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Blog_model</span> <span class="k">extends</span> <span class="nx">CI_Model</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="nv">$title</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nv">$content</span><span class="p">;</span>
+        <span class="k">public</span> <span class="nv">$date</span><span class="p">;</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">get_last_ten_entries</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;entries&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">result</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">insert_entry</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span>    <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span> <span class="c1">// please read the below note</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span>  <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">];</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">date</span>     <span class="o">=</span> <span class="nb">time</span><span class="p">();</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">(</span><span class="s1">&#39;entries&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">update_entry</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">title</span>    <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">content</span>  <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">];</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">date</span>     <span class="o">=</span> <span class="nb">time</span><span class="p">();</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">db</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">(</span><span class="s1">&#39;entries&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]));</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The methods in the above example use the <a class="reference internal" href="../database/query_builder.html"><span class="doc">Query Builder</span></a> database methods.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For the sake of simplicity in this example weâ€™re using <code class="docutils literal"><span class="pre">$_POST</span></code>
+directly. This is generally bad practice, and a more common approach
+would be to use the <a class="reference internal" href="../libraries/input.html"><span class="doc">Input Library</span></a>
+<code class="docutils literal"><span class="pre">$this-&gt;input-&gt;post('title')</span></code>.</p>
+</div>
+</div>
+<div class="section" id="anatomy-of-a-model">
+<h2><a class="toc-backref" href="#id3">Anatomy of a Model</a><a class="headerlink" href="#anatomy-of-a-model" title="Permalink to this headline">Â¶</a></h2>
+<p>Model classes are stored in your <strong>application/models/</strong> directory.
+They can be nested within sub-directories if you want this type of
+organization.</p>
+<p>The basic prototype for a model class is this:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model_name</span> <span class="k">extends</span> <span class="nx">CI_Model</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+                <span class="c1">// Your own constructor code</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where <strong>Model_name</strong> is the name of your class. Class names <strong>must</strong> have
+the first letter capitalized with the rest of the name lowercase. Make
+sure your class extends the base Model class.</p>
+<p>The file name must match the class name. For example, if this is your class:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User_model</span> <span class="k">extends</span> <span class="nx">CI_Model</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="k">parent</span><span class="o">::</span><span class="na">__construct</span><span class="p">();</span>
+                <span class="c1">// Your own constructor code</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Your file will be this:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nx">application</span><span class="o">/</span><span class="nx">models</span><span class="o">/</span><span class="nx">User_model</span><span class="o">.</span><span class="nx">php</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-a-model">
+<h2><a class="toc-backref" href="#id4">Loading a Model</a><a class="headerlink" href="#loading-a-model" title="Permalink to this headline">Â¶</a></h2>
+<p>Your models will typically be loaded and called from within your
+<a class="reference internal" href="controllers.html"><span class="doc">controller</span></a> methods. To load a model you will use
+the following method:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If your model is located in a sub-directory, include the relative path
+from your models directory. For example, if you have a model located at
+<em>application/models/blog/Queries.php</em> youâ€™ll load it using:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;blog/queries&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once loaded, you will access your model methods using an object with the
+same name as your class:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">model_name</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>If you would like your model assigned to a different object name you can
+specify it via the second parameter of the loading method:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;foobar&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foobar</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Here is an example of a controller, that loads a model, then serves a
+view:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Blog_controller</span> <span class="k">extends</span> <span class="nx">CI_Controller</span> <span class="p">{</span>
+
+        <span class="k">public</span> <span class="k">function</span> <span class="nf">blog</span><span class="p">()</span>
+        <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">);</span>
+
+                <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">blog</span><span class="o">-&gt;</span><span class="na">get_last_ten_entries</span><span class="p">();</span>
+
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">view</span><span class="p">(</span><span class="s1">&#39;blog&#39;</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="auto-loading-models">
+<h2><a class="toc-backref" href="#id5">Auto-loading Models</a><a class="headerlink" href="#auto-loading-models" title="Permalink to this headline">Â¶</a></h2>
+<p>If you find that you need a particular model globally throughout your
+application, you can tell CodeIgniter to auto-load it during system
+initialization. This is done by opening the
+<strong>application/config/autoload.php</strong> file and adding the model to the
+autoload array.</p>
+</div>
+<div class="section" id="connecting-to-your-database">
+<h2><a class="toc-backref" href="#id6">Connecting to your Database</a><a class="headerlink" href="#connecting-to-your-database" title="Permalink to this headline">Â¶</a></h2>
+<p>When a model is loaded it does <strong>NOT</strong> connect automatically to your
+database. The following options for connecting are available to you:</p>
+<ul>
+<li><p class="first">You can connect using the standard database methods <a class="reference internal" href="../database/connecting.html"><span class="doc">described
+here</span></a>, either from within your
+Controller class or your Model class.</p>
+</li>
+<li><p class="first">You can tell the model loading method to auto-connect by passing
+TRUE (boolean) via the third parameter, and connectivity settings,
+as defined in your database config file will be used:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">You can manually pass database connectivity settings via the third
+parameter:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;hostname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;myusername&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mypassword&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mydatabase&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;dbdriver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;mysqli&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;dbprefix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;pconnect&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">FALSE</span><span class="p">;</span>
+<span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;db_debug&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">TRUE</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">model</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nv">$config</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="helpers.html" class="btn btn-neutral float-right" title="Helper Functions">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="views.html" class="btn btn-neutral" title="Views"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2017, British Columbia Institute of Technology.
+      Last updated on Sep 25, 2017.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.6',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
